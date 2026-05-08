@@ -9,7 +9,8 @@ app.use(cors());
 app.use(express.json());
 
 // Routes (később ide kerülnek)
-// app.use('/api/foods', foodRoutes);
+const foodRoutes = require('./routes/foodRoutes');
+app.use('/api/foods', foodRoutes);
 // app.use('/api/auth', authRoutes);
 // app.use('/api/cart', cartRoutes);
 
