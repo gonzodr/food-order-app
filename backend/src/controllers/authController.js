@@ -9,7 +9,7 @@ const register = async (req, res) => {
     return res.status(400).json({ error: 'Minden mező kitöltése kötelező' });
   }
   try {
-    const existing = await pool.query('SELECT id FROM users WHERE email = $1', [email]);
+    const existing = await pool.query('SELECT id FROM users WHERE email = $1 OR username = $2', [email, username]);
     if (existing.rows.length > 0) {
       return res.status(400).json({ error: 'Ez az email már foglalt' });
     }

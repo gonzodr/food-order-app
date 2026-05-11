@@ -7,10 +7,10 @@
     "test": "tests"
   },
   "scripts": {
-  "start": "node src/app.js",
-  "dev": "nodemon src/app.js",
-  "test": "jest"
-},
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "jest --forceExit"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
