@@ -1,4 +1,3 @@
-
 services:
   postgres:
     image: postgres:15
@@ -18,6 +17,26 @@ services:
     container_name: foodorder-redis
     ports:
       - "6379:6379"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: foodorder-backend
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: foodorder
+      JWT_SECRET: valami_titkos_kulcs_123
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      - postgres
+      - redis
 
 volumes:
   pgdata:
