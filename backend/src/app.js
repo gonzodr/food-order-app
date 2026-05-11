@@ -8,7 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Routes (később ide kerülnek)
 const foodRoutes = require('./routes/foodRoutes');
 app.use('/api/foods', foodRoutes);
 const authRoutes = require('./routes/authRoutes');

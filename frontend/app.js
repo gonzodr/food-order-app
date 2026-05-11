@@ -19,8 +19,8 @@ const authTabs = document.querySelectorAll('.auth-tab');
 // ── Auth állapot ────────────────────────────────────────
 function updateAuthUI() {
   if (token) {
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    userInfo.textContent = `👤 ${payload.email}`;
+    const payload = JSON.parse(decodeURIComponent(escape(atob(token.split('.')[1]))));
+    userInfo.textContent = `👋 Üdv újra, ${payload.username || payload.email}!`;
     logoutBtn.style.display = 'inline-block';
     openAuthBtn.style.display = 'none';
   } else {
@@ -97,25 +97,47 @@ registerBtn.addEventListener('click', async () => {
   }
 });
 
-// ── Ételek betöltése ────────────────────────────────────
-async function loadFoods() {
-  try {
-    const res = await fetch(`${API}/foods`);
-    const foods = await res.json();
-    foodsGrid.innerHTML = '';
-    foods.forEach(food => {
-      const card = document.createElement('div');
-      card.className = 'food-card';
-      card.innerHTML = `
+// ── Szűrők ──────────────────────────────────────────────
+let allFoods = [];
+
+const filterBtns = document.querySelectorAll('.filter-btn');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const category = btn.dataset.category;
+    const filtered = category === 'all' ? allFoods : allFoods.filter(f => f.category === category);
+    renderFoods(filtered);
+  });
+});
+
+function renderFoods(foods) {
+  foodsGrid.innerHTML = '';
+  foods.forEach(food => {
+    const card = document.createElement('div');
+    card.className = 'food-card';
+    card.innerHTML = `
+      <img src="${food.image_url || 'https://via.placeholder.com/300x160?text=Nincs+kép'}" 
+      alt="${food.name}" 
+      onerror="this.src='https://via.placeholder.com/300x160?text=Nincs+kép'" />
+      <div class="food-card-body">
         <h3>${food.name}</h3>
         <p>${food.description || ''}</p>
         <span class="price">${food.price} Ft</span>
         <button onclick="addToCart(${food.id}, '${food.name}', ${food.price})">
           + Kosárba
         </button>
-      `;
-      foodsGrid.appendChild(card);
-    });
+      </div>
+    `;
+    foodsGrid.appendChild(card);
+  });
+}
+// ── Ételek betöltése ────────────────────────────────────
+async function loadFoods() {
+  try {
+    const res = await fetch(`${API}/foods`);
+    allFoods = await res.json();
+    renderFoods(allFoods);
   } catch {
     foodsGrid.innerHTML = '<p>Nem sikerült betölteni az ételeket.</p>';
   }

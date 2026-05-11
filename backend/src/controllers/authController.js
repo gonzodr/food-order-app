@@ -41,7 +41,7 @@ const login = async (req, res) => {
       return res.status(401).json({ error: 'Hibás email vagy jelszó' });
     }
     const token = jwt.sign(
-      { id: user.id, email: user.email, role: user.role },
+      { id: user.id, email: user.email, role: user.role, username: user.username },
       process.env.JWT_SECRET,
       { expiresIn: '24h' }
     );

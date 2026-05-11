@@ -21,7 +21,13 @@
 
   <main>
     <section id="foods-section">
-      <h2>Ételeink</h2>
+      <div class="category-filters">
+      <button class="filter-btn active" data-category="all">🍽️ Összes</button>
+      <button class="filter-btn" data-category="pizza">🍕 Pizza</button>
+      <button class="filter-btn" data-category="burger">🍔 Burger</button>
+      <button class="filter-btn" data-category="tészta">🍝 Tészta</button>
+      <button class="filter-btn" data-category="desszert">🍰 Desszert</button>
+      </div>
       <div id="foods-grid" class="foods-grid"></div>
     </section>
 
@@ -45,7 +51,7 @@
       </div>
 
       <div id="login-form">
-        <input type="email" id="login-email" placeholder="Email" />
+        <input type="email" id="login-email" placeholder="Email cím" />
         <input type="password" id="login-password" placeholder="Jelszó" />
         <button id="login-btn">Bejelentkezés</button>
         <p id="login-error" class="error"></p>

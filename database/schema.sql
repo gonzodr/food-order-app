@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS foods (
   price NUMERIC(10,2) NOT NULL,
   category VARCHAR(100),
   image_url TEXT,
+  available BOOLEAN DEFAULT TRUE,
   created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -33,9 +34,19 @@ CREATE TABLE IF NOT EXISTS order_items (
   price NUMERIC(10,2) NOT NULL
 );
 
-INSERT INTO foods (name, description, price, category) VALUES
-  ('Margherita Pizza', 'Paradicsom, mozzarella, bazsalikom', 2500, 'pizza'),
-  ('Pepperoni Pizza', 'Paradicsom, mozzarella, pepperoni', 2900, 'pizza'),
-  ('Caesar Saláta', 'Rómaisaláta, csirke, parmezan', 1800, 'saláta'),
-  ('Hamburger', 'Marhahús, saláta, paradicsom, sajt', 2200, 'burger'),
-  ('Coca-Cola', '0.5l', 500, 'ital');
+INSERT INTO foods (name, description, price, category, image_url) VALUES
+  ('Szalámis Csípős Pizza', 'Paradicsomos alap, sajt, bazsalikom, chilli, szalámi', 2490, 'pizza', 'https://foodish-api.com/images/pizza/pizza32.jpg'),
+  ('Magyaros Pizza', 'Paradicsomos alap, sajt, bazsalikom, pokolszalámi', 2490, 'pizza', 'https://foodish-api.com/images/pizza/pizza30.jpg'),
+  ('Vega Pizza', 'Paradicsomos alap, vegán sajt, zöldség mix: répa, gomba, cukkini', 2700, 'pizza', 'https://foodish-api.com/images/pizza/pizza10.jpg'),
+  ('Pizza Mediterran', 'Paradicsomos alap, sonka, gomba, sajt, oliva', 2750, 'pizza', 'https://foodish-api.com/images/pizza/pizza16.jpg'),
+  ('Pizza Húsimádó', 'Paradicsomos alap, sonka, gomba, sajt, tarja, rukkola', 2750, 'pizza', 'https://foodish-api.com/images/pizza/pizza20.jpg'),
+  ('Monterrey Burger', 'Marhahúspogácsa, Monterey Jack sajt, grillezett kukoricás salsa, chipotle paradicsomszósz, koriander-lime majonéz', 3700, 'burger', 'https://foodish-api.com/images/burger/burger48.jpg'),
+  ('Amerikai Sajtburger', 'Marhahúspogácsa, fehér cheddar, ementáli sajt, kapros savanyú uborka, római saláta', 3700, 'burger', 'https://foodish-api.com/images/burger/burger5.jpg'),
+  ('Big Kahuna Burger', 'Marhahúspogácsa, cheddar sajt, grill bacon, grillezett ananász, teriyaki szósz', 3800, 'burger', 'https://foodish-api.com/images/burger/burger25.jpg'),
+  ('VEGA Burger', 'Beyond Meat pogácsa, gluténmentes zsömle, növényi cheddar sajt, római saláta, paradicsom, lilahagyma', 4500, 'burger', 'https://foodish-api.com/images/burger/burger76.jpg'),
+  ('Málnás Palacsinta', 'Amerikai palacsinta málnával és málnalekvárral', 2100, 'desszert', 'https://foodish-api.com/images/dessert/dessert32.jpg'),
+  ('Füge Bruscetta', 'Édes Bruscetta vanilia pudingal és fügével', 2800, 'desszert', 'https://foodish-api.com/images/dessert/dessert23.jpg'),
+  ('Gyümölcsös Gőzgombóc', 'Gőzgombóc gránátalmával és eperrel töltve', 2600, 'desszert', 'https://foodish-api.com/images/dessert/dessert21.jpg'),
+  ('Torta', 'Narancsos pisztácia torta', 600, 'desszert', 'https://foodish-api.com/images/dessert/dessert7.jpg'),
+  ('Bolognai Spagetti', 'Igazi olaszos spagetti gazdagon hússal és paradicsommal', 3800, 'tészta', 'https://foodish-api.com/images/pasta/pasta23.jpg'),
+  ('Carbonara Spagetti', 'Igazi olaszos spagetti gazdagon sajttal', 3800, 'tészta', 'https://foodish-api.com/images/pasta/pasta27.jpg');
