@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Food Order App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <h1>🍕 Food Order</h1>
+      <nav>
+        <span id="user-info"></span>
+        <button id="logout-btn" style="display:none">Kijelentkezés</button>
+        <button id="open-auth-btn">Bejelentkezés</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="foods-section">
+      <h2>Ételeink</h2>
+      <div id="foods-grid" class="foods-grid"></div>
+    </section>
+
+    <aside id="cart-section">
+      <h2>🛒 Kosár</h2>
+      <div id="cart-items"></div>
+      <div class="cart-total">
+        <strong>Összesen: <span id="cart-total">0</span> Ft</strong>
+      </div>
+      <button id="order-btn">Rendelés leadása</button>
+    </aside>
+  </main>
+
+  <!-- Auth Modal -->
+  <div id="auth-modal" class="modal hidden">
+    <div class="modal-content">
+      <button class="close-btn" id="close-modal">✕</button>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Bejelentkezés</button>
+        <button class="auth-tab" data-tab="register">Regisztráció</button>
+      </div>
+
+      <div id="login-form">
+        <input type="email" id="login-email" placeholder="Email" />
+        <input type="password" id="login-password" placeholder="Jelszó" />
+        <button id="login-btn">Bejelentkezés</button>
+        <p id="login-error" class="error"></p>
+      </div>
+
+      <div id="register-form" class="hidden">
+        <input type="text" id="reg-username" placeholder="Felhasználónév" />
+        <input type="email" id="reg-email" placeholder="Email" />
+        <input type="password" id="reg-password" placeholder="Jelszó" />
+        <button id="register-btn">Regisztráció</button>
+        <p id="register-error" class="error"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
